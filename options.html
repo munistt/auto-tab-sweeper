@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tab De-duper Settings</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 16px; }
+      fieldset { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+      label { display: block; margin: 8px 0 4px; font-weight: 600; }
+      input[type="number"], select, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .small { color: #666; font-size: 12px; }
+      button { padding: 10px 14px; border: 0; border-radius: 8px; background: #1b73e8; color: #fff; cursor: pointer; }
+      button:disabled { opacity: 0.6; cursor: default; }
+    </style>
+  </head>
+  <body>
+    <h1>Tab De-duper Settings</h1>
+
+    <fieldset>
+      <label for="threshold">Close duplicates if inactive for (minutes)</label>
+      <input id="threshold" type="number" min="1" step="1" />
+      <div class="small">Default: 30 minutes</div>
+    </fieldset>
+
+    <fieldset>
+      <label for="compareMode">Duplicate detection mode</label>
+      <select id="compareMode">
+        <option value="exact">Exact URL (ignore hash)</option>
+        <option value="ignoreQuery">Ignore query & hash (origin + path)</option>
+        <option value="hostnamePath">Host + path only</option>
+      </select>
+      <div class="small">Tip: "Ignore query" treats <code>?ref=</code> or <code>?q=</code> variants as the same page.</div>
+    </fieldset>
+
+    <fieldset class="row">
+      <div>
+        <label><input id="protectPinned" type="checkbox" /> Protect pinned tabs</label>
+      </div>
+      <div>
+        <label><input id="protectAudible" type="checkbox" /> Protect tabs playing audio</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label for="whitelist">Whitelist (one pattern per line)</label>
+      <textarea id="whitelist" rows="6" placeholder="e.g. *://*.meet.google.com/*&#10;*://*.teams.microsoft.com/*"></textarea>
+      <div class="small">Use <code>*</code> wildcards, e.g., <code>*://*.example.com/*</code></div>
+    </fieldset>
+
+    <fieldset>
+      <label for="sweepInterval">Check for duplicates every (minutes)</label>
+      <input id="sweepInterval" type="number" min="1" step="1" />
+      <div class="small">Default: 5 minutes</div>
+    </fieldset>
+
+    <button id="save">Save</button>
+    <span id="status" class="small" style="margin-left:8px;"></span>
+
+    <script src="options.js"></script>
+  </body>
+</html>

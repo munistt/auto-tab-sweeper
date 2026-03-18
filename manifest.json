@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Tab Merger",
+  "version": "0.1.0",
+  "description": "Closes duplicate tabs that haven't been used for a while. Keeps your workspace clean.",
+  "permissions": ["tabs", "storage", "alarms"],
+  "background": { "service_worker": "background.js" },
+  "options_page": "options.html",
+  "action": {
+    "default_title": "Tab Duper"
+  }
+}
